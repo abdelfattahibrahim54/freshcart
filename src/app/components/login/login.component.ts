@@ -69,6 +69,24 @@ export class LoginComponent implements OnInit {
           
           this._AuthService.isLogin.next(true)
 
+          this._CartService.getLoggedUserWishList().subscribe({
+            next:(res)=>{console.log(res.data);
+              
+              this._CartService.wishListCount.next(res.data.length)
+      
+              // this.wishCount = this._CartService.wishListCount.value
+              
+              console.log( this._CartService.wishListCount.value);
+      
+              
+      
+          
+      
+            },
+            error:(err)=>{console.log(err);
+            }
+          })
+
 
           this._CartService.getLoggedCart().subscribe({
             next: (res) => {
