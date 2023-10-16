@@ -1,0 +1,88 @@
+
+<div class="container my-3">
+
+
+<section class="registerPage">
+    <div class="container py-3">
+        <h2 class="mb-4">Register Now :</h2>
+        <form class=" d-flex flex-column gap-1" [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+            <label for="_UN">Name:</label>
+            <input formControlName="name" type="text" name="userName" id="_UN" class="form-control">
+
+
+            <div class="alert alert-danger"
+                *ngIf="registerForm.controls['name'].touched && registerForm.controls['name'].errors != null">
+                <p *ngIf="registerForm.controls['name'].getError('required')">User name is required</p>
+                <p *ngIf="registerForm.controls['name'].getError('pattern')">User name must start with uppercase letter
+                </p>
+                <p *ngIf="registerForm.controls['name'].getError('minlength')">Min. length 3</p>
+                <p *ngIf="registerForm.controls['name'].getError('maxlength')">Max length 20</p>
+            </div>
+
+            <label for="_UE">Email:</label>
+            <input formControlName="email" type="email" name="email" id="_UE" class="form-control">
+            <div class="alert alert-danger"
+                *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].errors != null">
+                <p *ngIf="registerForm.controls['email'].getError('required')">Email is required</p>
+                <p *ngIf="registerForm.controls['email'].getError('email')">Enter a valid email address</p>
+
+            </div>
+
+            <label for="_UP">Password:</label>
+            <input formControlName="password" type="password" name="password" id="_UP" class="form-control">
+
+            <div *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].errors != null"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.controls['password'].getError('required')">Password is required</p>
+                <p *ngIf="registerForm.controls['password'].getError('pattern')">Password must contain atleast 1
+                    uppercase, 1 lowercase, 1 number & 1 special character !@#$%</p>
+                <p *ngIf="registerForm.controls['password'].getError('minlength')">Min. length 8</p>
+            </div>
+
+            <label for="_UrP">Re-enter your password:</label>
+            <input formControlName="rePassword" type="password" name="repassword" id="_UrP" class="form-control">
+            <div class="alert alert-danger"
+                *ngIf="registerForm.get('password')?.value !== registerForm.get('rePassword')?.value && registerForm.controls['rePassword'].touched">
+
+                <p>Passweord not matching</p>
+
+            </div>
+
+            <label for="_PN">Phone number:</label>
+            <input formControlName="phone" type="tel" name="phoneNumber" id="_PN" class="form-control">
+            <div *ngIf="registerForm.controls['phone'].touched && registerForm.controls['phone'].errors != null"
+                class="alert alert-danger">
+                <p *ngIf="registerForm.controls['phone'].getError('required')">Phone number is required</p>
+                <p *ngIf="registerForm.controls['phone'].getError('pattern')">Enter a valid Egyptian phone number</p>
+
+            </div>
+
+            <div *ngIf="Apierror" class="alert alert-danger">
+                <p> {{Msg}} </p>
+
+
+            </div>
+
+            <div *ngIf="Apisuccess" class="alert alert-success">
+                <p> {{Msg}} </p>
+
+
+            </div>
+
+            <div class="align-self-end ">
+
+
+                <button *ngIf="!isLoading else loading" [disabled]="!registerForm.valid" type="submit"
+                    class="btn btn-successer  my-3 mx-1 ">Register</button>
+                <ng-template #loading><button type="button" class="btn btn-successer-loading  my-3 "> <i
+                            class="fa-solid fa-spinner fa-spin"></i> </button></ng-template>
+
+            </div>
+        </form>
+    </div>
+</section>
+
+
+</div>
+
+<app-footer ></app-footer>

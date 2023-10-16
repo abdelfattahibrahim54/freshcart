@@ -1,0 +1,61 @@
+
+<div class="container my-3">
+
+
+<section class="brands" *ngIf="!isLoading2 else loading2">
+
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let x of brands">
+            <div  (click)="getSpBrandCall(x._id)"
+             data-bs-toggle="modal" data-bs-target="#exampleModal"  class="brandsItem position-relative border border-1 rounded rounded-3 d-flex justify-content-center align-items-center">
+                <img [src]="x.image" class="w-100" alt="">
+
+                <h5 class="text-center w-100 position-absolute bottom-0 start-0">{{x.name}}</h5>
+            </div>
+        </div>
+    </div>
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content" >
+        <div class="modal-header">
+         
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex justify-content-center align-items-center position-relative" style="height: 250px;" *ngIf="!isLoading else loading">
+         <img [src]="brandImage" class="w-50" alt="">
+         <h5 class="position-absolute bottom-0 start-0 w-100 text-center">{{brandName}}</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+
+    <ng-template #loading>
+        <div class="w-100  d-flex justify-content-center align-items-center" style="height: 250px;">
+            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              
+        </div>
+    </ng-template>
+  </div>
+
+
+</section>
+
+<ng-template #loading2>
+    <app-loading></app-loading>
+</ng-template>
+
+</div>
+
+
+<app-footer *ngIf="!isLoading && !isLoading2"></app-footer>
+

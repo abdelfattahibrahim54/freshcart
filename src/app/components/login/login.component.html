@@ -1,0 +1,74 @@
+
+<div class="container my-3">
+
+
+<section class="loginPage">
+    <div class="container py-3">
+        <h2>login Now :</h2>
+        <form class=" d-flex flex-column gap-1" [formGroup]="loginForm" (ngSubmit)="submitFunction(loginForm)">
+
+
+            <label for="_UE">Email:</label>
+            <input formControlName="email" type="email" name="email" id="_UE" class="form-control">
+            <div class="alert alert-danger"
+                *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors != null ">
+                <p *ngIf="loginForm.controls['email'].getError('required')">Email is required</p>
+                <p *ngIf="loginForm.controls['email'].getError('email')">Enter a valid email address</p>
+
+            </div>
+
+            <label for="_UP">Password:</label>
+            <input formControlName="password" type="password" name="password" id="_UP" class="form-control">
+
+            <div class="alert alert-danger"
+                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors != null">
+                <p *ngIf="loginForm.controls['password'].getError('required')">Password is required</p>
+                <p *ngIf="loginForm.controls['password'].getError('pattern')">Password must contain atleast 1 uppercase,
+                    1 lowercase, 1 number & 1 special character !@#$%</p>
+                <p *ngIf="loginForm.controls['password'].getError('minlength')">Min. length 8</p>
+            </div>
+
+
+
+            <div *ngIf="loginError" class="alert alert-danger ">
+                <p> {{loginMsg}} </p>
+
+
+            </div>
+
+            <div *ngIf="loginSuc" class="alert alert-success ">
+                <p> {{loginMsg}} </p>
+
+
+            </div>
+
+
+            <div class="align-self-end d-flex justify-content-center align-items-center w-100 ">
+
+
+
+
+
+
+                <div class=" d-flex justify-content-center align-items-center  w-100">
+                    <a routerLink="/forgetpw" class="me-auto d-block text-primary">Forgot password ?</a>
+                    <button [disabled]="!loginForm.valid || loginError || loginSuc " *ngIf="!isLoading else loading"
+                        type="submit" class="btn btn-successer  my-3 mx-1 ">login</button>
+                    <ng-template #loading><button type="button" class="btn btn-successer-loading  my-3 mx-1 "> <i
+                                class="fa-solid fa-spinner fa-spin"></i> </button></ng-template>
+                    <p class="m-0 p-0">or <button type="button" class="btn btn-successer  my-3 mx-1 "
+                            routerLink="/register"> Register</button> if not registered</p>
+                </div>
+
+
+
+            </div>
+        </form>
+    </div>
+</section>
+
+
+</div>
+
+
+<app-footer ></app-footer>

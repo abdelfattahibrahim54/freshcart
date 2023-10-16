@@ -1,0 +1,49 @@
+
+<div class="container my-3">
+
+<div *ngIf="!isLoading else loading">
+    <section class="categories">
+        <div class="row g-3">
+            <div class="col-lg-4 col-md-6 col-sm-12  " *ngFor="let x of categories">
+    
+    
+                <div class="border border-2 rounded-3 position-relative catComp " [id]="x.name"  style=" min-height: 300px; background-image: url({{x.image}}); background-position: center; background-size: cover;" (click)="subCatCall(x._id ,$event )" > 
+                 
+                        
+                    <!-- <img [src]="x.image" class=" w-100" alt="..." style="min-height: 300px;"> -->
+                    <div class="card-body">
+                        <h4 class="  rounded-3 card-text text-center fw-bold position-absolute bottom-0 start-0 p-2 bg-white w-100 m-0">
+                            {{x.name}}</h4>
+                    </div>
+                </div>
+    
+    
+            </div>
+    
+    
+    
+        </div>
+    </section>
+    
+    
+    <section class="subCategories " *ngIf="showSub">
+    
+        <h3 class="text-center w-100  my-3 text-main fw-bold">{{subCatName}} sub-categories</h3>
+        <div class="row g-3">
+            <div class="col-lg-4" *ngFor="let x of subCategories">
+                <div class="border border-1 rounded-3 py-3">
+                    <h5 class="text-center fw-semibold">{{x.name}}</h5>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+</div>
+
+   <ng-template #loading>
+    <app-loading></app-loading>
+</ng-template>
+
+</div>
+
+<app-footer *ngIf="!isLoading"></app-footer>

@@ -1,0 +1,73 @@
+
+<div class="container my-3">
+
+<section class="cart mt-4" *ngIf="( isLoading || numberOfCartItems != 0) else zero">
+    <div class="container" *ngIf="!isLoading else empty">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="mb-4">Shopping Cart <i class="fa-solid  fa-cart-shopping "></i></h2> <button
+                (click)="clearCartCall()" class="btn-outline-danger btn">Clear cart <i
+                    class="fa-solid fa-trash-can "></i></button>
+        </div>
+
+
+        <div class="itemInCart  p-5 " *ngFor="let x of cartProducts">
+            <div class="row ">
+
+
+                <div class="col-lg-4 ">
+                    <img src={{x.product.imageCover}} class="w-50 mb-3" alt="">
+                    <h5>{{x.product.title}}</h5>
+                    <h6>{{x.product._id}}</h6>
+                </div>
+                <div class="col-lg-8 justify-content-center align-items-center d-flex flex-column ">
+                    <h4 class="my-3">{{x.price|currency:"EGP "}}</h4>
+                    <div class="fs-4 my-3">
+
+
+                        <button class="btn" (click)="updateQTYCall(x.product._id, x.count-1)"><i
+                                class="fa-solid fa-minus-circle   fs-4 text-main"></i></button>
+                        <span class="mx-4">{{x.count}}</span>
+                        <button class="btn" (click)="updateQTYCall(x.product._id, x.count+1)"><i
+                                class="fa-solid fa-plus-circle  fs-4 text-main"></i></button>
+                    </div>
+                </div>
+
+
+
+                <button (click)="deleteCall(x.product._id)" class="btn btn-outline-danger px-2 m-0 mt-3 w-25"> Remove
+                    Item <i class="fa-solid fa-trash-can "></i> </button>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="border border-1 rounded rounded-3 text-center p-3 d-flex justify-content-between align-items-center">
+            <h5 class="fw-semibold">Total Price : {{totalPrice|currency: "EGP "}}</h5>
+        </div>
+
+        <button [routerLink]="['/checkout' , cartId]"
+            class="btn bg-main checkout mt-2 text-white fs-5 px-3 ms-auto d-block"> Check out</button>
+    </div>
+
+    <ng-template #empty>
+        <app-loading></app-loading>
+    </ng-template>
+
+
+</section>
+
+<ng-template #zero>
+
+    <div class="container vh-100 d-flex align-items-center justify-content-center">
+
+        <h2 class="fs-1 text-danger"> Cart is empty ! </h2>
+
+    </div>
+
+</ng-template>
+
+</div>
+
+<app-footer *ngIf="!isLoading"></app-footer>

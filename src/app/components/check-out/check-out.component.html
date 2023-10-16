@@ -1,0 +1,68 @@
+
+<div class="container my-3">
+
+<section class="registerPage">
+    <div class="container py-3">
+        <h2>Shipping info:</h2>
+        <form class=" d-flex flex-column gap-1" [formGroup]="shippingAddress" (ngSubmit)="payment(shippingAddress)">
+            <label for="_UN">Details</label>
+            <input formControlName="details" type="text" name="userName" id="_UN" class="form-control">
+
+
+            <div class="alert alert-danger"
+                *ngIf="shippingAddress.controls['details'].touched && shippingAddress.controls['details'].errors != null">
+                <p *ngIf="shippingAddress.controls['details'].getError('required')">this field is required</p>
+               
+            </div>
+
+            <label for="_UE">Phone:</label>
+            <input formControlName="phone" type="tel" name="phone" id="_UE" class="form-control">
+            <div class="alert alert-danger"
+                *ngIf="shippingAddress.controls['phone'].touched && shippingAddress.controls['phone'].errors != null">
+                <p *ngIf="shippingAddress.controls['phone'].getError('required')">this field is required</p>
+                <p *ngIf="shippingAddress.controls['phone'].getError('pattern')">Enter a valid phone number</p>
+
+            </div>
+
+            <label for="_UP">City:</label>
+            <input formControlName="city" type="text" name="city" id="_UP" class="form-control">
+
+            <div *ngIf="shippingAddress.controls['city'].touched && shippingAddress.controls['city'].errors != null"
+                class="alert alert-danger">
+                <p *ngIf="shippingAddress.controls['city'].getError('required')">this field is required</p>
+                
+            </div>
+
+            
+
+           
+
+            <div *ngIf="Apierror" class="alert alert-danger">
+                <p> {{Msg}} </p>
+
+
+            </div>
+
+            <div *ngIf="Apisuccess" class="alert alert-success">
+                <p> {{Msg}} </p>
+
+
+            </div>
+
+            <div class="align-self-end ">
+
+
+                <button *ngIf="!isLoading else loading" [disabled]="!shippingAddress.valid" type="submit"
+                    class="btn btn-successer  my-3 mx-1 ">Payment</button>
+                <ng-template #loading><button type="button" class="btn btn-successer-loading  my-3 "> <i
+                            class="fa-solid fa-spinner fa-spin"></i> </button></ng-template>
+
+            </div>
+        </form>
+    </div>
+</section>
+
+</div>
+
+
+<app-footer ></app-footer>

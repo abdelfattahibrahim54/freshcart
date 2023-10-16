@@ -1,0 +1,217 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap');
+
+
+
+:root {
+    --main-color: #0aad0a;
+    --light-color: #f0f3f2;
+    --shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
+    --font-family1: 'Encode Sans Expanded', sans-serif;
+    --font-family: 'Montserrat', sans-serif;
+    --rating-color: #ffc908;
+}
+
+body {
+    font-family: var(--font-family) !important;
+}
+
+.rating-color {
+    color: var(--rating-color);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+a,
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.product{position: relative; overflow: hidden;border-radius: 10px;
+
+  box-shadow: 0 0 5px 2px transparent;
+}
+
+.product { padding: 5px 5px 30px; transition: all 0.5s ;}
+.product:hover {
+    box-shadow: 0 0 5px 2px var(--main-color);
+   
+   
+}
+
+.product .addTo {
+    transition: all 0.5s, opacity 1s;
+    // transform: translateY(100%);
+    opacity: 0;
+
+    transform: translateX(-50%);
+
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    width: 60%;
+}
+
+.product:hover .addTo {
+    opacity: 1;
+    // transform: translateY(3px);
+    background-color: var(--main-color);
+    bottom: 5px;
+    color: var(--light-color);
+
+}
+
+// .cart-active{color: var(--main-color);}
+
+
+.font-sm {
+    font-size: 14px;
+}
+
+.text-main {
+    color: var(--main-color);
+}
+
+.bg-main {
+    background-color: var(--main-color) !important;
+}
+
+.bg-main-1{ background-color: var(--main-color) !important; border-radius: 10px;}
+
+.bg-main-light {
+    background-color: var(--light-color) !important;
+}
+
+.text-main{color: var(--main-color);}
+
+
+
+.btn-successer{
+    --bs-btn-color: #0aad0a;
+    --bs-btn-border-color: #0aad0a;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0aad0a;
+    --bs-btn-hover-border-color: #0aad0a;
+    --bs-btn-focus-shadow-rgb: 25, 135, 84;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0aad0a;
+    --bs-btn-active-border-color: #0aad0a;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #0aad0a;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #0aad0a;
+    --bs-gradient: none;
+  }
+
+  
+.btn-successer-loading{
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #0aad0a;
+    --bs-btn-border-color: #0aad0a;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #0aad0a;
+    --bs-btn-hover-border-color: #0aad0a;
+    --bs-btn-focus-shadow-rgb: 60, 153, 110;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #0aad0a;
+    --bs-btn-active-border-color: #0aad0a;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: #0aad0a;
+    --bs-btn-disabled-border-color: #0aad0a;
+  }
+
+  .alert { margin-block: 5px;}
+
+
+  .lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background:var(--main-color);
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

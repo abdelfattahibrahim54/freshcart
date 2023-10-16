@@ -1,0 +1,62 @@
+
+
+<div class="container my-3">
+
+<form  [formGroup]="forgetPWEmail" (ngSubmit)="submitFN(forgetPWEmail)" *ngIf="!success && !success2">
+    <label for="email" class="mb-2">
+        Enter your email
+    </label>
+    <input formControlName="email"  class="form-control" type="text" id="email">
+    <p class="mt-3">a verification code will be sent to your email</p>
+    <button [disabled]="!forgetPWEmail.valid || disabled" class="btn btn-successer" *ngIf="!isLoading else loading">send code</button>
+    <a (click)="showCodeSec()" class=" ms-4 text-primary haveCode">Already have a code ?</a>
+    <ng-template #loading><button type="button" class="btn btn-successer-loading  "> <i
+        class="fa-solid fa-spinner fa-spin"></i> </button></ng-template>
+    <div class=" alert alert-danger mt-3 " *ngIf="error">
+        <p>{{errorMsg}}</p>
+    </div>
+</form>
+
+
+
+<form  [formGroup]="resetCodeForm" (ngSubmit)="submitFN2(resetCodeForm)" class="mt-3" *ngIf="!success2 && (success || showCode)">
+    <label for="resetCode" class="mb-2">
+        Enter confirmation code
+    </label>
+    <input formControlName="resetCode"  class="form-control mb-3" type="text" id="resetCode">
+
+    <button [disabled]="!resetCodeForm.valid" class="btn btn-successer" *ngIf="!isLoading else loading">Enter verification code</button>
+    <ng-template #loading><button type="button" class="btn btn-successer-loading  "> <i
+        class="fa-solid fa-spinner fa-spin"></i> </button></ng-template>
+    <div class=" alert alert-danger mt-3 " *ngIf="error2">
+        <p>{{errorMsg2}}</p>
+    </div>
+</form>
+
+
+
+<form  [formGroup]="newPasswordForm" (ngSubmit)="submitFN3(newPasswordForm)" class="mt-3" *ngIf="success2" >
+    <label for="newPassword" class="mb-2">
+        Enter new password
+    </label>
+    <input formControlName="newPassword"  class="form-control mb-3" type="password" id="newPassword">
+
+    <button [disabled]="!newPasswordForm.valid" class="btn btn-successer" *ngIf="!isLoading else loading">Change password</button>
+    <ng-template #loading><button type="button" class="btn btn-successer-loading  "> <i
+        class="fa-solid fa-spinner fa-spin"></i> </button></ng-template>
+    <div class=" alert alert-danger mt-3 " *ngIf="newPasswordForm.get('newPassword')?.touched && newPasswordForm.get('newPassword')?.errors != null">
+        <p *ngIf="newPasswordForm.controls.newPassword.getError('required')" >this field is required</p>
+        <p *ngIf="newPasswordForm.controls.newPassword.getError('pattern')">Password must contain atleast 1 uppercase, 1 lowercase, 1 number & 1 special character !@#$%</p>
+        <p *ngIf="newPasswordForm.controls.newPassword.getError('minlength')">Password must be at least 8 characters</p>
+    </div>
+</form>
+
+</div>
+
+<app-footer class="fixed-bottom"></app-footer>
+
+
+
+
+
+

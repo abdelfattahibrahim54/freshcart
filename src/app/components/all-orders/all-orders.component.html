@@ -1,0 +1,61 @@
+
+<div class="container my-3">
+
+<section class="orders" *ngIf="!isLoading else loading">
+    <h2 class="text-main fw-bold text-center fs-1">All orders</h2>
+
+    <div class="row g-3 border m-3 border-1 rounded rounded-3 p-3" *ngFor="let cartItem of orders ; index as i">
+
+        <h5 class="fw-bold">Order no. {{i+1}} </h5>
+
+        <div class="col-lg-4" *ngFor="let x of cartItem.cartItems">
+          
+            
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img [src]="x.product.imageCover" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body fw-semibold ">
+                      <h5 class="card-title  fw-bold text-main">{{x.product.title}}</h5>
+                      <p class="card-text">Count: {{x.count}}</p>
+                      <p class="card-text">Price: {{x.price}}</p>
+                      <p class="card-text">Rating: {{x.product.ratingsAverage
+                    }} <i class="fa-solid fa-star rating-color" ></i></p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+            <div class="w-100 border-top border-1">
+                <h6  class="fw-bold   my-3  text-main " >Order Price : {{cartItem.totalOrderPrice | currency:"EGP "
+                }}</h6> 
+                <h6  class="fw-bold my-3  text-main  " >Order date : {{cartItem.createdAt 
+                }}</h6> 
+            </div>
+            
+
+
+    </div>
+
+
+
+ 
+
+
+</section>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
+
+
+  
+</div>
+
+<app-footer *ngIf="!isLoading"></app-footer>
+
+

@@ -1,0 +1,13 @@
+
+
+<div class="container my-3">
+
+
+<owl-carousel-o [options]="customOptions" >
+
+  <ng-template carouselSlide    *ngFor="let slide of categoriesArr"   ><div style="background-image: url({{slide.image}}); background-size: cover; background-position: center;" class="imgCont">  </div> </ng-template>  
+   
+</owl-carousel-o>
+
+
+</div>
